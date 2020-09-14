@@ -1,6 +1,7 @@
 module.exports = {
     configureWebpack: {
         resolve: {
+            extensions: [],  //后缀
             alias: {
                 'views': '@/views',
                 'components': '@/components',
