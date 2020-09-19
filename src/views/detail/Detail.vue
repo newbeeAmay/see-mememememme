@@ -1,6 +1,6 @@
 <template>
   <div id="detail">
-     <detail-nav class="detail-nav" @titleClick='titleClick' ref="nav"></detail-nav>
+    <detail-nav class="detail-nav" @titleClick='titleClick' ref="nav"></detail-nav>
     <better-scroll class="content" :probe-type="3" ref="scroll" @scroll="contentScroll">
     <detail-swiper :top-images="topImages"></detail-swiper>
     <detail-base-info :goods="goodsInfo"></detail-base-info>
@@ -144,9 +144,13 @@ export default {
       const product = {};
       product.image = this.topImages[0];
       product.title = this.goodsInfo.title;
-      product.desc = this.goodsList.desc;
-      product.price = this.goodsInfo.newPrice;
+      product.desc = this.goodsInfo.desc;
+      product.price = this.goodsInfo.realPrice;
       product.iid = this.iid;
+      // this.$store.commit('addList',product)
+      this.$store.dispatch('addCart',product).then(res => {
+        console.log(res);
+      })
     }
   },
 }
@@ -158,7 +162,7 @@ export default {
     height: 100vh;
    background-color: #fff;
    position: relative; 
-   z-index: 1;
+   z-index: 4;
   }
   .detail-nav {
    position: relative; 
